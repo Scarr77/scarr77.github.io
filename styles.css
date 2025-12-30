@@ -1,8 +1,11 @@
 :root {
-  --bg: #0f172a;
-  --text: #e5e7eb;
-  --accent: #38bdf8;
+  bg-dark: #000000;        /* true black */
+  bg-green: #0D4715;      /* your dark green */
+  text-main: #E6F4EA;     /* soft green-white (easy on eyes) */
+  text-muted: #A7CBB2;    /* muted green-gray */
+  accent: #2EEA6A;        /* vibrant green accent */
 }
+
 
 * {
   margin: 0;
@@ -24,7 +27,11 @@ body {
   left: 0;
   height: 3px;
   width: 0%;
-  background: var(--accent);
+ background: linear-gradient(
+    90deg,
+    #2EEA6A,
+    #0D4715
+  );
   z-index: 2000;
 }
 
@@ -33,13 +40,18 @@ body {
   position: fixed;
   top: 3px;
   width: 100%;
-  background: rgba(15, 23, 42, 0.95);
+  background: linear-gradient(
+    90deg,
+    rgba(13, 71, 21, 0.95),
+    rgba(0, 0, 0, 0.95)
+  );
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
   z-index: 1000;
   backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(46, 234, 106, 0.15);
 }
 
 .logo {
@@ -50,27 +62,29 @@ body {
 }
 
 nav a {
-  margin-left: 1.5rem;
-  cursor: pointer;
-  text-decoration: none;
-  color: var(--text);
-  position: relative;
+  color: var(--text-main);
 }
 
-nav a::after {
-  content: "";
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 0%;
-  height: 2px;
+nav a.active {
+  color: var(--accent);
+}
+
+nav a:hover {
+  color: var(--accent);
+}
+
+.cta button {
   background: var(--accent);
-  transition: width 0.3s ease;
+  color: #000;
+  border-radius: 8px;
 }
 
-nav a:hover::after {
-  width: 100%;
+.cta .secondary {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
 }
+
 
 /* Sections */
 .section {
@@ -79,6 +93,14 @@ nav a:hover::after {
   max-width: 900px;
   margin: auto;
 }
+
+.section:not(#home) {
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 12px;
+  margin-bottom: 4rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
 
 .hidden {
   opacity: 0;
@@ -182,6 +204,16 @@ nav a:hover::after {
 nav a.active {
   color: var(--accent);
 }
+
+h1, h2, h3 {
+  color: var(--text-main);
+}
+
+p {
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
 
 .scroll-hint {
   margin-top: 3rem;
