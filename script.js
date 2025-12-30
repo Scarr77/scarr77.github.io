@@ -1,47 +1,68 @@
+// ===============================
 // Smooth scroll navigation
+// ===============================
 document.querySelectorAll("[data-target]").forEach(el => {
   el.addEventListener("click", () => {
-    document
-      .getElementById(el.dataset.target)
-      .scrollIntoView({ behavior: "smooth" });
+    const target = document.getElementById(el.dataset.target);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth" });
+    }
 
-    navMenu.classList.remove("open");
+    const navMenu = document.getElementById("nav-menu");
+    if (navMenu) navMenu.classList.remove("open");
   });
 });
 
+// ===============================
 // Scroll reveal
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("show");
-    }
-  });
-}, { threshold: 0.15 });
+// ===============================
+const observer = new IntersectionObserver(
+  entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+      }
+    });
+  },
+  { threshold: 0.15 }
+);
 
 document.querySelectorAll(".hidden").forEach(el => observer.observe(el));
 
+// ===============================
 // Scroll progress bar
+// ===============================
 window.addEventListener("scroll", () => {
   const scrollTop = window.scrollY;
   const docHeight = document.body.scrollHeight - window.innerHeight;
-  document.getElementById("progress-bar").style.width =
-    `${(scrollTop / docHeight) * 100}%`;
+  const bar = document.getElementById("progress-bar");
+
+  if (bar) {
+    bar.style.width = `${(scrollTop / docHeight) * 100}%`;
+  }
 });
 
+// ===============================
 // Mobile menu toggle
+// ===============================
 const menuToggle = document.getElementById("menu-toggle");
 const navMenu = document.getElementById("nav-menu");
 
-menuToggle.addEventListener("click", () => {
-  navMenu.classList.toggle("open");
-});
+if (menuToggle && navMenu) {
+  menuToggle.addEventListener("click", () => {
+    navMenu.classList.toggle("open");
+  });
+}
 
+// ===============================
 // Active nav highlighting
+// ===============================
 const sections = document.querySelectorAll("section");
 const navLinks = document.querySelectorAll("nav a");
 
 window.addEventListener("scroll", () => {
   let current = "";
+
   sections.forEach(section => {
     if (window.scrollY >= section.offsetTop - 150) {
       current = section.id;
@@ -56,7 +77,9 @@ window.addEventListener("scroll", () => {
   });
 });
 
+// ===============================
 // Phrase rotator
+// ===============================
 const phrases = [
   "I build systems, not shortcuts.",
   "I learn by rebuilding environments.",
@@ -64,17 +87,21 @@ const phrases = [
   "Iteration over imitation."
 ];
 
-let index = 0;
-setInterval(() => {
-  document.getElementById("dynamic-line").textContent =
-    phrases[index];
-  index = (index + 1) % phrases.length;
-}, 3000);
+let phraseIndex = 0;
+const dynamicLine = document.getElementById("dynamic-line");
 
-// Entertaining contact form behavior
+if (dynamicLine) {
+  setInterval(() => {
+    dynamicLine.textContent = phrases[phraseIndex];
+    phraseIndex = (phraseIndex + 1) % phrases.length;
+  }, 3000);
+}
+
+// ===============================
+// Contact form (Formspree + fun feedback)
+// ===============================
 const form = document.getElementById("contact-form");
 const status = document.getElementById("form-status");
-const sendBtn = document.getElementById("send-btn");
 
 const messages = [
   "Message sent. I like the way you think.",
@@ -84,41 +111,30 @@ const messages = [
   "Transmission successful."
 ];
 
-if (form) {
-  form.addEventListener("submit", e => {
+if (form && status) {
+  form.addEventListener("submit", async e => {
     e.preventDefault();
 
-    sendBtn.classList.add("loading");
-    status.textContent = "";
+    status.textContent = "Sending…";
 
-    setTimeout(() => {
-      sendBtn.classList.remove("loading");
+    const data = new FormData(form);
 
-      const msg = messages[Math.floor(Math.random() * messages.length)];
-      status.textContent = msg;
+    try {
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: data,
+        headers: { Accept: "application/json" }
+      });
 
-      form.reset();
-    }, 1200);
+      if (response.ok) {
+        const msg = messages[Math.floor(Math.random() * messages.length)];
+        status.textContent = msg;
+        form.reset();
+      } else {
+        status.textContent = "Something went wrong. Try again.";
+      }
+    } catch (err) {
+      status.textContent = "Network error. Please try later.";
+    }
   });
-
 }
-const form = document.getElementById("contact-form");
-const status = document.getElementById("form-status");
-
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const data = new FormData(form);
-
-  const response = await fetch(form.action, {
-    method: form.method,
-    body: data,
-    headers: { Accept: "application/json" }
-  });
-
-  if (response.ok) {
-    status.textContent = "Message sent. I’ll be in touch.";
-    form.reset();
-  } else {
-    status.textContent = "Something went wrong. Try again.";
-  }
-});
