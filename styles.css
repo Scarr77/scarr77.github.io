@@ -123,3 +123,42 @@ nav a:hover::after {
     display: flex;
   }
 }
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+}
+
+.subtitle {
+  display: block;
+  font-size: 1.2rem;
+  color: var(--accent);
+  margin-top: 0.5rem;
+}
+
+.hero-text {
+  max-width: 600px;
+  margin: 2rem 0;
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+.cta button {
+  padding: 0.8rem 1.5rem;
+  margin-right: 1rem;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.cta .secondary {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+
