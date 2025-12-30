@@ -15,10 +15,15 @@
 
 body {
   font-family: system-ui, sans-serif;
-  background: var(--bg);
-  color: var(--text);
+  color: var(--text-main);
+  background: linear-gradient(
+    180deg,
+    var(--bg-green) 0%,
+    var(--bg-dark) 60%
+  );
   scroll-behavior: smooth;
 }
+
 
 /* Scroll Progress Bar */
 #progress-bar {
