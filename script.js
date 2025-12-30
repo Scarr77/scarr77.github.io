@@ -1,75 +1,34 @@
-/* ===============================
-   SMOOTH SCROLL NAVIGATION
-================================ */
-document.querySelectorAll("[data-target]").forEach(item => {
-  item.addEventListener("click", () => {
+// Smooth scroll navigation
+document.querySelectorAll("[data-target]").forEach(el => {
+  el.addEventListener("click", () => {
     document
-      .getElementById(item.dataset.target)
+      .getElementById(el.dataset.target)
       .scrollIntoView({ behavior: "smooth" });
+
+    navMenu.classList.remove("open");
   });
 });
 
-/* ===============================
-   HERO TEXT ROTATION
-================================ */
-const phrases = [
-  "I build systems, not shortcuts.",
-  "I learn by rebuilding environments.",
-  "Creative thinking backed by infrastructure.",
-  "Iteration over imitation."
-];
-
-let phraseIndex = 0;
-setInterval(() => {
-  const el = document.getElementById("dynamic-line");
-  if (el) {
-    el.textContent = phrases[phraseIndex];
-    phraseIndex = (phraseIndex + 1) % phrases.length;
-  }
-}, 3000);
-
-/* ===============================
-   SCROLL REVEAL
-================================ */
-const observer = new IntersectionObserver(
-  entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("show");
-      }
-    });
-  },
-  { threshold: 0.15 }
-);
+// Scroll reveal
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("show");
+    }
+  });
+}, { threshold: 0.15 });
 
 document.querySelectorAll(".hidden").forEach(el => observer.observe(el));
 
-/* ===============================
-   SCROLL PROGRESS BAR
-================================ */
+// Scroll progress bar
 window.addEventListener("scroll", () => {
   const scrollTop = window.scrollY;
   const docHeight = document.body.scrollHeight - window.innerHeight;
-  const progress = (scrollTop / docHeight) * 100;
-  document.getElementById("progress-bar").style.width = `${progress}%`;
+  document.getElementById("progress-bar").style.width =
+    `${(scrollTop / docHeight) * 100}%`;
 });
 
-/* ===============================
-   NAVBAR SHRINK ON SCROLL
-================================ */
-const navbar = document.querySelector(".navbar");
-
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 80) {
-    navbar.classList.add("shrink");
-  } else {
-    navbar.classList.remove("shrink");
-  }
-});
-
-/* ===============================
-   MOBILE MENU TOGGLE
-================================ */
+// Mobile menu toggle
 const menuToggle = document.getElementById("menu-toggle");
 const navMenu = document.getElementById("nav-menu");
 
@@ -77,17 +36,14 @@ menuToggle.addEventListener("click", () => {
   navMenu.classList.toggle("open");
 });
 
-/* ===============================
-   ACTIVE NAV LINK
-================================ */
+// Active nav highlighting
 const sections = document.querySelectorAll("section");
 const navLinks = document.querySelectorAll("nav a");
 
 window.addEventListener("scroll", () => {
   let current = "";
-
   sections.forEach(section => {
-    if (window.scrollY >= section.offsetTop - 140) {
+    if (window.scrollY >= section.offsetTop - 150) {
       current = section.id;
     }
   });
@@ -99,3 +55,18 @@ window.addEventListener("scroll", () => {
     }
   });
 });
+
+// Phrase rotator
+const phrases = [
+  "I build systems, not shortcuts.",
+  "I learn by rebuilding environments.",
+  "Creative thinking backed by infrastructure.",
+  "Iteration over imitation."
+];
+
+let index = 0;
+setInterval(() => {
+  document.getElementById("dynamic-line").textContent =
+    phrases[index];
+  index = (index + 1) % phrases.length;
+}, 3000);
