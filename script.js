@@ -34,12 +34,6 @@ menuToggle.addEventListener("click", () => {
   navMenu.classList.toggle("open");
 });
 
-// Auto-close mobile menu
-document.querySelectorAll("#nav-menu a").forEach(link => {
-  link.addEventListener("click", () => {
-    navMenu.classList.remove("open");
-  });
-});
 
 // Active nav highlighting
 const sections = document.querySelectorAll("section");
@@ -61,3 +55,15 @@ window.addEventListener("scroll", () => {
     }
   });
 });
+const phrases = [
+  "I build systems, not shortcuts.",
+  "I learn by rebuilding environments.",
+  "Creative thinking backed by infrastructure.",
+  "Iteration over imitation."
+];
+
+let index = 0;
+setInterval(() => {
+  document.getElementById("dynamic-line").textContent = phrases[index];
+  index = (index + 1) % phrases.length;
+}, 3000);
