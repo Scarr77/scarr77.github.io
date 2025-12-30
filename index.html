@@ -88,34 +88,41 @@
 </section>
 
 <!-- CONTACT -->
+<!-- CONTACT -->
 <section id="contact" class="section hidden">
   <h2>Let’s Build Something</h2>
+
   <p class="contact-intro">
     Got an idea, a question, or just vibing? Drop a message 👇
   </p>
 
   <form
-  id="contact-form"
-  action="https://formspree.io/f/meeqwqzb"
-  method="POST"
-  class="contact-form"
->
-  <input type="text" name="_gotcha" style="display:none">
+    id="contact-form"
+    action="https://formspree.io/f/meeqwqzb"
+    method="POST"
+    class="contact-form"
+  >
+    <!-- Honeypot anti-spam -->
+    <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none">
 
-  <!-- fields stay the same -->
-
-  <button type="submit" class="submit-btn">Send it 🚀</button>
-
-  <p id="form-status" class="form-status"></p>
-</form>
     <div class="field">
       <label>Your name</label>
-      <input type="text" name="name" placeholder="Who am I talking to?" required>
+      <input
+        type="text"
+        name="name"
+        placeholder="Who am I talking to?"
+        required
+      >
     </div>
 
     <div class="field">
       <label>Your email</label>
-      <input type="email" name="email" placeholder="So I can reply" required>
+      <input
+        type="email"
+        name="email"
+        placeholder="So I can reply"
+        required
+      >
     </div>
 
     <div class="field">
@@ -128,12 +135,14 @@
       ></textarea>
     </div>
 
-    <!-- Optional hidden context -->
+    <!-- Context -->
     <input type="hidden" name="source" value="Portfolio Contact Form">
 
     <button type="submit" class="submit-btn">
       Send it 🚀
     </button>
+
+    <p id="form-status" class="form-status"></p>
   </form>
 </section>
 
