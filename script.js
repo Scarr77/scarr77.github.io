@@ -1,12 +1,13 @@
 // Smooth scroll navigation
 document.querySelectorAll("[data-target]").forEach(item => {
   item.addEventListener("click", () => {
-    const target = document.getElementById(item.dataset.target);
-    target.scrollIntoView({ behavior: "smooth" });
+    document
+      .getElementById(item.dataset.target)
+      .scrollIntoView({ behavior: "smooth" });
   });
 });
 
-// Scroll reveal animation
+// Scroll reveal
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -17,7 +18,7 @@ const observer = new IntersectionObserver(entries => {
 
 document.querySelectorAll(".hidden").forEach(el => observer.observe(el));
 
-// Scroll progress indicator
+// Scroll progress bar
 window.addEventListener("scroll", () => {
   const scrollTop = window.scrollY;
   const docHeight = document.body.scrollHeight - window.innerHeight;
@@ -33,6 +34,14 @@ menuToggle.addEventListener("click", () => {
   navMenu.classList.toggle("open");
 });
 
+// Auto-close mobile menu
+document.querySelectorAll("#nav-menu a").forEach(link => {
+  link.addEventListener("click", () => {
+    navMenu.classList.remove("open");
+  });
+});
+
+// Active nav highlighting
 const sections = document.querySelectorAll("section");
 const navLinks = document.querySelectorAll("nav a");
 
@@ -40,9 +49,8 @@ window.addEventListener("scroll", () => {
   let current = "";
 
   sections.forEach(section => {
-    const sectionTop = section.offsetTop - 120;
-    if (window.scrollY >= sectionTop) {
-      current = section.getAttribute("id");
+    if (window.scrollY >= section.offsetTop - 140) {
+      current = section.id;
     }
   });
 
@@ -51,13 +59,5 @@ window.addEventListener("scroll", () => {
     if (link.dataset.target === current) {
       link.classList.add("active");
     }
-  });
-});
-
-
-
-document.querySelectorAll("#nav-menu a").forEach(link => {
-  link.addEventListener("click", () => {
-    navMenu.classList.remove("open");
   });
 });
