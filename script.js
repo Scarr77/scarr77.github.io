@@ -67,3 +67,10 @@ setInterval(() => {
   document.getElementById("dynamic-line").textContent = phrases[index];
   index = (index + 1) % phrases.length;
 }, 3000);
+
+const phrases = [
+  "I build systems, not shortcuts.",
+  "I learn by rebuilding environments.",
+  "Creative thinking backed by infrastructure.",
+  "Iteration over imitation."
+];
