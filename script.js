@@ -112,10 +112,15 @@ const messages = [
 ];
 
 if (form && status) {
+  status.setAttribute("aria-live", "polite");
+
   form.addEventListener("submit", async e => {
     e.preventDefault();
 
     status.textContent = "Sending…";
+
+    const submitBtn = form.querySelector("button[type='submit']");
+    submitBtn.disabled = true;
 
     const data = new FormData(form);
 
@@ -130,11 +135,14 @@ if (form && status) {
         const msg = messages[Math.floor(Math.random() * messages.length)];
         status.textContent = msg;
         form.reset();
+        submitBtn.disabled = false;
       } else {
         status.textContent = "Something went wrong. Try again.";
+        submitBtn.disabled = false;
       }
     } catch (err) {
       status.textContent = "Network error. Please try later.";
+      submitBtn.disabled = false;
     }
   });
 }
