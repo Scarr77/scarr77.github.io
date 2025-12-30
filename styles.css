@@ -1,56 +1,45 @@
-/* =====================
-   Global Effects
-===================== */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-  opacity: 0.04;
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* =====================
-   Color System
-===================== */
-:root {
-  --bg-green: #0d4715;
-  --bg-dark: #000000;
-  --text-main: #e6f4ea;
-  --text-muted: #a7cbb2;
-  --accent: #2eea6a;
-}
-
-/* =====================
-   Reset
-===================== */
+/* ========= Reset ========= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* =====================
-   Base
-===================== */
-body {
-  font-family: system-ui, sans-serif;
-  background: radial-gradient(circle at top, var(--bg-green), var(--bg-dark));
-  color: var(--text-main);
-  scroll-behavior: smooth;
-  line-height: 1.6;
+/* ========= Theme ========= */
+:root {
+  --bg-green: #0d4715;
+  --bg-dark: #000;
+  --text-main: #e6f4ea;
+  --text-muted: #a7cbb2;
+  --accent: #2eea6a;
 }
 
-/* =====================
-   Navbar
-===================== */
+/* ========= Background ========= */
+body {
+  font-family: system-ui, sans-serif;
+  color: var(--text-main);
+  background: radial-gradient(circle at top, var(--bg-green), var(--bg-dark));
+  scroll-behavior: smooth;
+}
+
+/* ========= Progress Bar ========= */
+#progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: var(--accent);
+  z-index: 2000;
+}
+
+/* ========= Navbar ========= */
 .navbar {
   position: fixed;
   top: 0;
   width: 100%;
   padding: 1rem 2rem;
-  background: linear-gradient(90deg, rgba(13,71,21,0.95), rgba(0,0,0,0.95));
+  background: rgba(0,0,0,0.8);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -58,120 +47,61 @@ body {
 }
 
 .logo {
+  color: var(--accent);
   font-weight: bold;
   cursor: pointer;
+}
+
+nav a {
+  margin-left: 1.5rem;
+  cursor: pointer;
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+nav a.active,
+nav a:hover {
   color: var(--accent);
-  font-size: 1.2rem;
 }
 
-/* HIDE the menu text links as requested */
-nav ul, nav a:not(.logo) {
-    display: none; 
-}
-
-/* =====================
-   Progress Bar
-===================== */
-#progress-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 3px;
-  background: var(--accent);
-  width: 0%;
-  z-index: 2000;
-}
-
-/* =====================
-   Hero & Layout
-===================== */
+/* ========= Sections ========= */
 .section {
   min-height: 100vh;
   padding: 8rem 10%;
   position: relative;
-  z-index: 1;
 }
 
 .hero {
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-
-/* Container to lock Name + Wave together */
-.name-container {
-    display: flex;
-    align-items: center; 
-    /* Default to left align on desktop */
-    justify-content: flex-start; 
-    gap: 15px; 
-    flex-wrap: wrap;
+  position: relative;
 }
 
 .subtitle {
   display: block;
-  font-size: 1.2rem;
   color: var(--text-muted);
   margin-top: 0.5rem;
 }
 
 .dynamic-line {
   margin-top: 1.5rem;
-  font-size: 1.1rem;
-  color: var(--text-muted);
+  color: var(--accent);
 }
 
-/* =====================
-   Sound Wave Animation
-===================== */
-.music-waves {
-  display: flex;
-  align-items: center;
-  gap: 4px; 
-  height: 40px; /* Good size for desktop */
-}
-
-.music-waves span {
-  display: block;
-  width: 6px; 
-  background: var(--accent); 
-  border-radius: 5px;
-  animation: bounce 1.2s infinite ease-in-out;
-}
-
-/* Stagger animations for the wave effect */
-.music-waves span:nth-child(1) { animation-delay: 0.1s; height: 20%; }
-.music-waves span:nth-child(2) { animation-delay: 0.3s; height: 60%; }
-.music-waves span:nth-child(3) { animation-delay: 0.6s; height: 100%; }
-.music-waves span:nth-child(4) { animation-delay: 0.3s; height: 60%; }
-.music-waves span:nth-child(5) { animation-delay: 0.1s; height: 20%; }
-
-@keyframes bounce {
-  0%, 100% { height: 20%; }
-  50% { height: 100%; }
-}
-
-/* =====================
-   Buttons
-===================== */
+/* ========= Buttons ========= */
 .cta {
   margin-top: 2rem;
 }
 
 button {
   padding: 0.7rem 1.6rem;
-  border-radius: 6px;
   border: none;
+  border-radius: 6px;
   cursor: pointer;
-  margin-right: 1rem;
   background: var(--accent);
   color: #000;
-  font-weight: 600;
-  transition: transform 0.2s ease;
-}
-
-button:hover {
-  transform: translateY(-2px);
+  margin-right: 1rem;
 }
 
 button.secondary {
@@ -180,13 +110,39 @@ button.secondary {
   color: var(--accent);
 }
 
-/* =====================
-   Reveal Animation
-===================== */
+/* ========= Visualizer ========= */
+.visualizer {
+  position: absolute;
+  bottom: 3rem;
+  right: 3rem;
+  display: flex;
+  gap: 6px;
+  height: 40px;
+  z-index: 5;
+}
+
+.visualizer span {
+  width: 4px;
+  background: var(--accent);
+  border-radius: 2px;
+  animation: pulse 1.2s ease-in-out infinite;
+}
+
+.visualizer span:nth-child(2) { animation-delay: .2s; }
+.visualizer span:nth-child(3) { animation-delay: .4s; }
+.visualizer span:nth-child(4) { animation-delay: .2s; }
+
+@keyframes pulse {
+  0% { height: 8px; }
+  50% { height: 40px; }
+  100% { height: 8px; }
+}
+
+/* ========= Reveal ========= */
 .reveal {
   opacity: 0;
   transform: translateY(40px);
-  transition: all 0.8s ease;
+  transition: all .8s ease;
 }
 
 .reveal.visible {
@@ -194,12 +150,9 @@ button.secondary {
   transform: translateY(0);
 }
 
-/* =====================
-   Skills / Stats
-===================== */
+/* ========= Layout Blocks ========= */
 .skills li {
-  margin: 0.8rem 0;
-  list-style: none;
+  margin: .6rem 0;
 }
 
 .stats {
@@ -215,83 +168,16 @@ button.secondary {
 
 .stats span {
   display: block;
-  font-size: 0.9rem;
   color: var(--text-muted);
 }
 
-/* =====================
-   Stack Grid
-===================== */
 .stack-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
   gap: 2rem;
   margin-top: 2rem;
 }
 
 .stack-grid h3 {
   color: var(--accent);
-  margin-bottom: 0.5rem;
-}
-
-/* =====================
-   Scroll Hint
-===================== */
-.scroll-hint {
-  margin-top: 3rem;
-  opacity: 0.6;
-}
-
-/* =====================
-   Mobile Optimization
-   (Always keep at the bottom)
-===================== */
-@media (max-width: 768px) {
-  
-  /* Center the name/wave container */
-  .name-container {
-    justify-content: center;
-    width: 100%;
-  }
-
-  /* Make name slightly smaller so it fits with the wave */
-  .hero h1 {
-    font-size: 2rem; 
-    text-align: center;
-  }
-  
-  .hero h2 {
-      text-align: center;
-  }
-
-  /* Shrink the wave slightly for mobile */
-  .music-waves {
-    height: 25px; 
-    gap: 3px;     
-  }
-  
-  .music-waves span {
-    width: 4px;   
-  }
-  
-  /* Add spacing above the buttons */
-  .cta {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 30px;
-    margin-bottom: 40px; 
-  }
-  
-  button {
-      margin-right: 0; /* Remove right margin for flex gap */
-  }
-  
-  /* Center stats on mobile */
-  .stats {
-      flex-direction: column;
-      gap: 1.5rem;
-      align-items: center;
-      text-align: center;
-  }
 }
