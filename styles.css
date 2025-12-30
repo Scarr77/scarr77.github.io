@@ -179,4 +179,8 @@ nav a:hover::after {
   transform: translateY(-5px);
 }
 
+nav a.active {
+  color: var(--accent);
+}
+
 
