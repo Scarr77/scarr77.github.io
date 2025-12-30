@@ -92,6 +92,7 @@ nav a:hover {
   margin: auto;
 }
 
+
 .section:not(#home) {
   background: rgba(0, 0, 0, 0.4);
   border-radius: 12px;
@@ -120,6 +121,26 @@ nav a:hover {
 
 .hero h1 {
   font-size: clamp(2.5rem, 5vw, 4rem);
+}
+
+#home {
+  background: transparent;
+}
+
+.section:not(#home) {
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 12px;
+  margin-bottom: 4rem;
+}
+
+#home h1,
+#home p,
+#home .subtitle {
+  color: var(--text-main);
+}
+
+#home .hero-text {
+  color: var(--text-muted);
 }
 
 .subtitle {
