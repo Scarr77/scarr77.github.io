@@ -4,6 +4,12 @@
   <meta charset="UTF-8" />
   <title>Shadrick Carr | Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO / Sharing -->
+  <meta name="description" content="Creative Technologist focused on cloud infrastructure, automation, and interaction-driven design.">
+  <meta property="og:title" content="Shadrick Carr | Creative Technologist">
+  <meta property="og:description" content="I build systems, not shortcuts.">
+
   <link rel="stylesheet" href="styles.css" />
 </head>
 
@@ -12,34 +18,23 @@
 <!-- Scroll Progress -->
 <div id="progress-bar"></div>
 
-<!-- Navbar -->
+<!-- NAVBAR -->
 <header class="navbar">
-  <div class="logo-wrap">
-    <div class="logo" data-target="home">SC</div>
+  <div class="logo" data-target="home">SC</div>
 
-    <!-- Audio / visual spectrum -->
-    <div class="nav-spectrum">
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </div>
-
-  <div class="menu-toggle" id="menu-toggle">≡</div>
+  <!-- Mobile toggle -->
+  <div class="menu-toggle" id="menu-toggle">☰</div>
 
   <nav id="nav-menu">
     <a data-target="home">Home</a>
     <a data-target="about">About</a>
     <a data-target="stack">Stack</a>
+    <a data-target="projects">Projects</a>
     <a data-target="story">Story</a>
     <a data-target="contact">Contact</a>
   </nav>
 </header>
+
 <!-- HERO -->
 <section id="home" class="section hero">
   <h1>
@@ -47,6 +42,7 @@
     <span class="subtitle">Creative Technologist</span>
   </h1>
 
+  <!-- Rotating phrase -->
   <p id="dynamic-line" class="dynamic-line"></p>
 
   <div class="cta">
@@ -74,18 +70,54 @@
 
   <div class="stack-grid">
     <div>
-      <h3>Infrastructure</h3>
+      <h3>☁️ Infrastructure</h3>
       <p>AWS labs, EC2, S3, IAM, networking fundamentals.</p>
     </div>
 
     <div>
-      <h3>Automation</h3>
+      <h3>⚙️ Automation</h3>
       <p>Shell scripting, environment setup, repeatable workflows.</p>
     </div>
 
     <div>
-      <h3>Creative Tech</h3>
+      <h3>🎛 Creative Tech</h3>
       <p>Frontend systems, UI motion, interaction-driven design.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="section hidden">
+  <h2>Projects & Labs</h2>
+
+  <div class="projects-grid">
+    <div class="project-card">
+      <h3>AWS Cloud Lab Rebuild</h3>
+      <p>
+        Designed and rebuilt AWS infrastructure using EC2, VPC, IAM, and S3.
+        Learned by breaking and rebuilding environments.
+      </p>
+      <span class="project-tags">AWS • EC2 • IAM • Networking</span>
+      <a href="#" target="_blank">View on GitHub →</a>
+    </div>
+
+    <div class="project-card">
+      <h3>Portfolio Website</h3>
+      <p>
+        Built this portfolio from scratch with responsive layout, motion,
+        and accessibility-first structure.
+      </p>
+      <span class="project-tags">HTML • CSS • JavaScript</span>
+      <a href="https://github.com/Scarr77" target="_blank">Source Code →</a>
+    </div>
+
+    <div class="project-card">
+      <h3>Automation Scripts</h3>
+      <p>
+        Shell scripts to automate environment setup and repetitive workflows.
+      </p>
+      <span class="project-tags">Shell • Automation</span>
+      <a href="#" target="_blank">View Scripts →</a>
     </div>
   </div>
 </section>
@@ -94,17 +126,21 @@
 <section id="story" class="section hidden">
   <h2>My Story</h2>
   <p>
-    I came up through creative work and earned technical depth by rebuilding
-    environments, breaking systems, and learning through iteration.
-    I don’t chase shortcuts — I build foundations.
+    I started in creative work—music, design, experimentation—where curiosity
+    mattered more than credentials.
+  </p>
+  <p>
+    That curiosity pulled me into systems: rebuilding environments, breaking
+    infrastructure, and learning how things actually work.
+  </p>
+  <p>
+    I don’t chase shortcuts. I build foundations.
   </p>
 </section>
 
 <!-- CONTACT -->
-<!-- CONTACT -->
 <section id="contact" class="section hidden">
   <h2>Let’s Build Something</h2>
-
   <p class="contact-intro">
     Got an idea, a question, or just vibing? Drop a message 👇
   </p>
@@ -115,27 +151,17 @@
     method="POST"
     class="contact-form"
   >
-    <!-- Honeypot anti-spam -->
-    <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none">
+    <!-- Spam honeypot -->
+    <input type="text" name="_gotcha" style="display:none">
 
     <div class="field">
       <label>Your name</label>
-      <input
-        type="text"
-        name="name"
-        placeholder="Who am I talking to?"
-        required
-      >
+      <input type="text" name="name" placeholder="Who am I talking to?" required>
     </div>
 
     <div class="field">
       <label>Your email</label>
-      <input
-        type="email"
-        name="email"
-        placeholder="So I can reply"
-        required
-      >
+      <input type="email" name="email" placeholder="So I can reply" required>
     </div>
 
     <div class="field">
@@ -148,12 +174,9 @@
       ></textarea>
     </div>
 
-    <!-- Context -->
     <input type="hidden" name="source" value="Portfolio Contact Form">
 
-    <button type="submit" class="submit-btn">
-      Send it 🚀
-    </button>
+    <button type="submit" class="submit-btn">Send it 🚀</button>
 
     <p id="form-status" class="form-status"></p>
   </form>
