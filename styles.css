@@ -1,78 +1,59 @@
-/* ============================
-   GLOBAL MOTION BACKGROUND
-   ============================ */
-
-body {
-  margin: 0;
-  min-height: 100vh;
-  background: linear-gradient(
-    120deg,
-    #0d4715,
-    #0b3a12,
-    #000000,
-    #134f1f
-  );
-  background-size: 400% 400%;
-  animation: gradientFlow 20s ease infinite;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  color: var(--text-main);
-}
-
-/* Animated gradient */
-@keyframes gradientFlow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* ============================
-   COLOR SYSTEM (CSS VARIABLES)
-   ============================ */
-
+/* ===============================
+   CSS VARIABLES
+================================ */
 :root {
-  --bg-green: #0d4715;
-  --bg-dark: #000000;
-
-  --text-main: #e6f4ea;
-  --text-muted: #a7cbb2;
-
-  --accent: #6ef38a;
+  --bg-green: #0D4715;
+  --bg-dark: #000;
+  --text-main: #E6F4EA;
+  --text-muted: #A7CBB2;
+  --accent: #7CFF8A;
 }
 
-/* ============================
-   RESET & BASE
-   ============================ */
-
+/* ===============================
+   RESET
+================================ */
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
+/* ===============================
+   BASE
+================================ */
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: radial-gradient(circle at top, var(--bg-green), var(--bg-dark));
+  color: var(--text-main);
 }
 
-/* ============================
-   NAVBAR
-   ============================ */
+/* ===============================
+   SCROLL PROGRESS
+================================ */
+#progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: var(--accent);
+  z-index: 2000;
+}
 
+/* ===============================
+   NAVBAR
+================================ */
 .navbar {
   position: fixed;
   top: 0;
   width: 100%;
-  height: 64px;
-  padding: 0 1.5rem;
+  padding: 1rem 2rem;
+  background: linear-gradient(to right, rgba(13,71,21,0.9), rgba(0,0,0,0.9));
   display: flex;
-  align-items: center;
   justify-content: space-between;
-
-  background: linear-gradient(
-    to bottom,
-    rgba(13, 71, 21, 0.9),
-    rgba(0, 0, 0, 0.7)
-  );
-  backdrop-filter: blur(12px);
+  align-items: center;
   z-index: 1000;
+  backdrop-filter: blur(10px);
 }
 
 .logo {
@@ -81,322 +62,168 @@ a {
   cursor: pointer;
 }
 
-/* ============================
-   NAV LINKS
-   ============================ */
-
-nav {
-  display: flex;
-  gap: 1.5rem;
-}
-
 nav a {
-  color: var(--text-muted);
-  font-size: 0.95rem;
+  margin-left: 1.5rem;
+  cursor: pointer;
+  color: var(--text-main);
+  text-decoration: none;
 }
 
-nav a.active,
-nav a:hover {
+nav a.active {
   color: var(--accent);
 }
-
-/* ============================
-   MOBILE MENU
-   ============================ */
 
 .menu-toggle {
   display: none;
-  font-size: 1.5rem;
   cursor: pointer;
+}
+
+/* ===============================
+   SECTIONS
+================================ */
+.section {
+  padding: 7rem 10%;
+}
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.subtitle {
+  display: block;
+  font-size: 1.4rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+}
+
+.dynamic-line {
+  margin: 1.5rem 0;
+  font-style: italic;
   color: var(--accent);
 }
 
+.cta button {
+  margin-right: 1rem;
+  padding: 0.8rem 1.6rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.cta .secondary {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+}
+
+.scroll-hint {
+  margin-top: 2rem;
+  opacity: 0.6;
+}
+
+/* ===============================
+   REVEAL
+================================ */
+.hidden {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease;
+}
+
+.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===============================
+   STACK / PROJECTS
+================================ */
+.stack-grid,
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.project-card {
+  background: rgba(0,0,0,0.4);
+  padding: 1.8rem;
+  border-radius: 16px;
+  backdrop-filter: blur(8px);
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+}
+
+.project-tags {
+  display: block;
+  margin: 1rem 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* ===============================
+   CONTACT
+================================ */
+.contact-form {
+  max-width: 480px;
+  margin-top: 2rem;
+}
+
+.field {
+  margin-bottom: 1rem;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 0.7rem;
+  border-radius: 6px;
+  border: none;
+}
+
+.submit-btn {
+  margin-top: 1rem;
+  padding: 0.8rem 1.6rem;
+  background: var(--accent);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.form-status {
+  margin-top: 1rem;
+  color: var(--accent);
+}
+
+/* ===============================
+   MOBILE
+================================ */
 @media (max-width: 768px) {
   .menu-toggle {
     display: block;
   }
 
   nav {
-    position: absolute;
-    top: 64px;
-    right: 0;
-    width: 220px;
-    flex-direction: column;
-    background: rgba(0, 0, 0, 0.95);
-    padding: 1rem;
     display: none;
+    flex-direction: column;
+    background: rgba(0,0,0,0.95);
+    position: absolute;
+    top: 100%;
+    right: 0;
+    padding: 1rem;
   }
 
   nav.open {
     display: flex;
   }
-}
 
-/* ===============================
-   Navbar Audio Spectrum
-   =============================== */
-
-.logo-wrap {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.nav-spectrum {
-  display: flex;
-  align-items: flex-end;
-  height: 16px;
-  gap: 3px;
-}
-
-.nav-spectrum span {
-  width: 3px;
-  height: 100%;
-  background: var(--accent);
-  border-radius: 2px;
-  animation: spectrum 1.2s infinite ease-in-out;
-  opacity: 0.85;
-}
-
-/* stagger animation */
-.nav-spectrum span:nth-child(1) { animation-delay: 0s; }
-.nav-spectrum span:nth-child(2) { animation-delay: .1s; }
-.nav-spectrum span:nth-child(3) { animation-delay: .2s; }
-.nav-spectrum span:nth-child(4) { animation-delay: .3s; }
-.nav-spectrum span:nth-child(5) { animation-delay: .4s; }
-.nav-spectrum span:nth-child(6) { animation-delay: .3s; }
-.nav-spectrum span:nth-child(7) { animation-delay: .2s; }
-.nav-spectrum span:nth-child(8) { animation-delay: .1s; }
-
-@keyframes spectrum {
-  0%   { height: 4px; }
-  50%  { height: 16px; }
-  100% { height: 6px; }
-}
-
-/* ============================
-   SECTIONS
-   ============================ */
-
-.section {
-  min-height: 100vh;
-  padding: 8rem 2rem 4rem;
-  max-width: 1100px;
-  margin: auto;
-}
-
-/* Reveal animation */
-.hidden {
-  opacity: 0;
-  transform: translateY(40px);
-}
-
-.show {
-  opacity: 1;
-  transform: translateY(0);
-  transition: all 0.8s ease;
-}
-
-@media (max-width: 768px) {
-  .nav-spectrum {
-    height: 12px;
-    opacity: 0.6;
+  nav a {
+    margin: 1rem 0;
   }
-}
-/* ===============================
-   ENTERTAINING CONTACT FORM
-================================ */
-.contact-intro {
-  max-width: 520px;
-  margin-bottom: 2rem;
-  color: var(--text-muted);
-}
-
-.contact-form {
-  max-width: 520px;
-  display: flex;
-  flex-direction: column;
-  gap: 1.8rem;
-}
-
-/* Floating label group */
-.form-group {
-  position: relative;
-}
-
-.form-group input,
-.form-group textarea {
-  width: 100%;
-  padding: 0.9rem 0.8rem;
-  background: rgba(0, 0, 0, 0.55);
-  border: 1px solid rgba(46, 234, 106, 0.25);
-  border-radius: 10px;
-  color: var(--text-main);
-  font-size: 0.95rem;
-  outline: none;
-  transition: border 0.25s ease, box-shadow 0.25s ease;
-}
-
-/* Label */
-.form-group label {
-  position: absolute;
-  top: 50%;
-  left: 0.8rem;
-  transform: translateY(-50%);
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  pointer-events: none;
-  transition: all 0.25s ease;
-  background: transparent;
-}
-
-/* Focus / filled states */
-.form-group input:focus,
-.form-group textarea:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 2px rgba(46, 234, 106, 0.15);
-}
-
-.form-group input:focus + label,
-.form-group textarea:focus + label,
-.form-group input:not(:placeholder-shown) + label,
-.form-group textarea:not(:placeholder-shown) + label {
-  top: -0.6rem;
-  left: 0.6rem;
-  font-size: 0.75rem;
-  color: var(--accent);
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,0.8),
-    rgba(0,0,0,0.8)
-  );
-  padding: 0 0.4rem;
-  border-radius: 4px;
-}
-
-/* Send button */
-#send-btn {
-  position: relative;
-  overflow: hidden;
-  padding: 0.75rem 2rem;
-  border-radius: 999px;
-  background: var(--accent);
-  color: #000;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-#send-btn.loading {
-  pointer-events: none;
-  background: rgba(46, 234, 106, 0.6);
-}
-
-.btn-text {
-  transition: opacity 0.3s ease;
-}
-
-.btn-loader {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-}
-
-#send-btn.loading .btn-text {
-  opacity: 0;
-}
-
-#send-btn.loading .btn-loader {
-  opacity: 1;
-}
-
-/* Loader animation */
-.btn-loader::after {
-  content: "•••";
-  font-size: 1.4rem;
-  letter-spacing: 3px;
-  animation: dots 1.2s infinite ease;
-}
-
-@keyframes dots {
-  0% { opacity: 0.2; }
-  50% { opacity: 1; }
-  100% { opacity: 0.2; }
-}
-
-.form-status {
-  margin-top: 0.6rem;
-  font-size: 0.95rem;
-  color: var(--accent);
-  animation: fadeUp 0.4s ease;
-}
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* ============================
-   HERO
-   ============================ */
-
-.hero h1 {
-  font-size: clamp(2.5rem, 5vw, 4rem);
-}
-
-.subtitle {
-  display: block;
-  font-size: 1.3rem;
-  color: var(--text-muted);
-}
-
-.hero-text {
-  max-width: 520px;
-  margin-top: 1rem;
-}
-
-/* ============================
-   BUTTONS
-   ============================ */
-
-button {
-  padding: 0.75rem 1.5rem;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
-}
-
-button.secondary {
-  background: transparent;
-  border: 1px solid var(--accent);
-  color: var(--accent);
-}
-
-/* ============================
-   SCROLL PROGRESS BAR
-   ============================ */
-
-#progress-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 3px;
-  background: var(--accent);
-  width: 0%;
-  z-index: 2000;
-}
-
-.submit-btn {
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-
-.submit-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 20px rgba(0,255,128,0.3);
-}
-
-.submit-btn:active {
-  transform: scale(0.97);
 }
