@@ -197,6 +197,12 @@ nav a:hover {
   transition: all 0.8s ease;
 }
 
+@media (max-width: 768px) {
+  .nav-spectrum {
+    height: 12px;
+    opacity: 0.6;
+  }
+}
 /* ===============================
    ENTERTAINING CONTACT FORM
 ================================ */
