@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Shadrick Carr | Portfolio</title>
+  <title>Shadrick Carr | Creative Technologist</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <meta name="description" content="Creative Technologist focused on cloud infrastructure, automation, and interaction-driven design.">
@@ -22,16 +22,10 @@
   <div class="logo-wrap">
     <div class="logo" data-target="home">SC</div>
 
-    <!-- MUSIC SPECTRUM (CSS ONLY) -->
-    <div class="nav-spectrum">
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
+    <!-- Music Spectrum -->
+    <div class="nav-spectrum" aria-hidden="true">
+      <span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span>
     </div>
   </div>
 
@@ -49,12 +43,14 @@
 
 <!-- HERO -->
 <section id="home" class="section hero">
-  <h1>
-    Shadrick Carr
-    <span class="subtitle">Creative Technologist</span>
-  </h1>
+  <div class="hero-parallax">
+    <h1>
+      Shadrick Carr
+      <span class="subtitle">Creative Technologist</span>
+    </h1>
 
-  <p id="dynamic-line" class="dynamic-line"></p>
+    <p id="dynamic-line" class="dynamic-line"></p>
+  </div>
 
   <div class="cta">
     <button data-target="about">Explore</button>
@@ -82,14 +78,12 @@
   <div class="stack-grid">
     <div>
       <h3>☁️ Infrastructure</h3>
-      <p>AWS labs, EC2, S3, IAM, networking fundamentals.</p>
+      <p>AWS labs, EC2, IAM, VPC, networking fundamentals.</p>
     </div>
-
     <div>
       <h3>⚙️ Automation</h3>
       <p>Shell scripting, environment setup, repeatable workflows.</p>
     </div>
-
     <div>
       <h3>🎛 Creative Tech</h3>
       <p>Frontend systems, UI motion, interaction-driven design.</p>
@@ -104,13 +98,17 @@
   <div class="projects-grid">
     <div class="project-card">
       <h3>AWS Cloud Lab Rebuild</h3>
-      <p>Designed and rebuilt AWS infrastructure by breaking and rebuilding environments.</p>
-      <span class="project-tags">AWS • EC2 • IAM • Networking</span>
+      <p><strong>Problem:</strong> Needed hands-on cloud experience.</p>
+      <p><strong>Solution:</strong> Rebuilt AWS environments from scratch.</p>
+      <p><strong>Result:</strong> Deep understanding of IAM, VPCs, failures.</p>
+      <span class="project-tags">AWS • EC2 • IAM • VPC</span>
     </div>
 
     <div class="project-card">
       <h3>Portfolio Website</h3>
-      <p>Responsive, animated portfolio built from scratch.</p>
+      <p><strong>Problem:</strong> Needed a credible technical presence.</p>
+      <p><strong>Solution:</strong> Designed a motion-driven, responsive site.</p>
+      <p><strong>Result:</strong> Clean UI with intentional interaction.</p>
       <span class="project-tags">HTML • CSS • JavaScript</span>
     </div>
   </div>
@@ -128,11 +126,20 @@
 <section id="contact" class="section hidden">
   <h2>Let’s Build Something</h2>
 
-  <form class="contact-form">
-    <input type="text" placeholder="Your name" required>
-    <input type="email" placeholder="Your email" required>
-    <textarea rows="4" placeholder="Your message" required></textarea>
+  <form
+    id="contact-form"
+    class="contact-form"
+    action="https://formspree.io/f/YOUR_ID"
+    method="POST"
+  >
+    <input type="text" name="_gotcha" style="display:none">
+
+    <input type="text" name="name" placeholder="Your name" required>
+    <input type="email" name="email" placeholder="Your email" required>
+    <textarea name="message" rows="4" placeholder="Your message" required></textarea>
+
     <button type="submit">Send it 🚀</button>
+    <p id="form-status" class="form-status"></p>
   </form>
 </section>
 
